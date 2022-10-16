@@ -1,0 +1,233 @@
+@charset "UTF-8";
+
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital@1&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital@1&family=Oswald&display=swap");
+
+/* ----- Layout for webpage ----- */
+
+html {
+  font-size: 16px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+html,
+body,
+nav,
+header,
+main,
+aside,
+footer,
+article,
+section,
+div {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ----- Layout ----- */
+
+body {
+  background-color: black;
+  color: #ffffff;
+  font-family: "Open Sans", sans-serif;
+  display: grid;
+
+  grid-template-columns: auto;
+  grid-template-rows: min-content min-content auto min-content;
+  grid-template-areas:
+    "nav"
+    "header"
+    "main"
+    "footer";
+}
+
+header {
+  grid-area: header;
+  color: #ffffff;
+  padding: 10px;
+}
+
+header h1,
+header h2 {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+main {
+  /* Animation */
+  background-color: black;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  -webkit-animation: gradient 15s ease infinite;
+  animation: gradient 15s ease infinite;
+
+  grid-area: main;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+@-webkit-keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+footer {
+  grid-area: footer;
+  color: #cccccc;
+  padding: 10px;
+  text-align: center;
+  font-family: "Oswald", sans-serif;
+}
+
+section,
+h1 {
+  margin-top: 2em;
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+h2 {
+  margin-left: 1em;
+}
+
+div img {
+  border: 2px solid black;
+}
+
+/* ----- Navigation ----- */
+
+nav {
+  grid-area: nav;
+  font-size: 1.1em;
+  font-family: "Oswald", sans-serif;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+nav a {
+  color: hsl(318, 81%, 63%);
+  padding: 0.4em;
+  text-decoration: none;
+  display: block;
+  border-radius: 5px;
+}
+
+nav a:hover {
+  background-color: #85dcb8;
+  color: e3eed7;
+}
+
+nav a.thisPage {
+  background-color: black;
+  color: #ffffff;
+}
+
+/* ----- Hamburger menu ----- */
+
+#menucheckbox {
+  display: none;
+}
+
+#menuicon {
+  background-image: url(menuicondarkpink.png);
+  width: 24px;
+  height: 24px;
+  display: block;
+  cursor: pointer;
+}
+
+#menucheckbox ~ ul {
+  display: none;
+}
+
+#menucheckbox:checked ~ ul {
+  display: flex;
+}
+
+/* ----- Media queries Tab----- */
+
+@media screen and (min-width: 740px) {
+  body {
+    grid-template-columns: auto auto;
+    grid-template-rows: min-content min-content auto min-content;
+    grid-template-areas:
+      "nav nav"
+      "header header"
+      "main main"
+      "footer footer";
+  }
+  nav ul {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  #menuicon {
+    display: none;
+  }
+  #menucheckbox ~ ul {
+    display: flex;
+  }
+  #menucheckbox:checked ~ ul {
+    display: flex;
+  }
+}
+
+/* ----- Media queries Desktop ----- */
+
+@media screen and (min-width: 1040px) {
+  body {
+    grid-template-columns: auto 180px minmax(auto, 820px) auto;
+    grid-template-rows: min-content auto min-content;
+    grid-template-areas:
+      "header header header header"
+      ".      nav    main         ."
+      "footer footer footer footer";
+  }
+
+  nav ul {
+    flex-direction: column;
+    justify-content: flex-end;
+    border-left: 2px solid #85dcb8;
+  }
+
+  #menuicon {
+    display: none;
+  }
+  #menucheckbox ~ ul {
+    display: flex;
+  }
+  #menucheckbox:checked ~ ul {
+    display: flex;
+  }
+}
